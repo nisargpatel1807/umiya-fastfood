@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Umiya Fast-Food & Bhajipav</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+ <!-- ========= FIXED HEADER (FINAL) ========= -->
+<header class="hero">
+  <div class="brand">
+    <img src="images/image.png" class="brand-logo" alt="logo">
+    <div class="brand-text">
+      <div class="brand-title">Umiya Fast-Food & Bhajipav</div>
+      <div class="brand-sub">Fresh • Tasty • Garam</div>
+    </div>
+  </div>
+</header>
+
+  <!-- MAIN -->
+  <main class="container">
+    <!-- Search -->
+    <div class="search-row" style="margin-top:22px;">
+      <input id="searchInput" placeholder="Search items (eg. bhajipav, manchurian, noodles)" />
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <section class="menu-section" id="menu">
+      <!-- Left: categories -->
+      <aside class="side-cats">
+        <h3>Menu Categories</h3>
+        <ul id="categories" class="cat-list">
+          <!-- categories inserted by JS -->
+        </ul>
+      </aside>
+
+      <!-- Right: menu -->
+      <section class="menu-right">
+        <h2 class="page-title">🍔 Our Menu</h2>
+
+        <!-- menu grid box -->
+        <div class="menu-grid" id="menuGrid" aria-live="polite">
+          <!-- menu cards inserted by JS -->
+        </div>
+      </section>
+    </section>
+
+    <!-- Quick Message / Contact -->
+    <section id="contact" class="contact-section">
+      <div class="contact-card">
+        <div class="contact-head">
+          <h2>Quick Message / Contact</h2>
+          <div class="lead">Only contact — we will respond by phone or WhatsApp. For bulk/party orders, mention approximate quantity & date/time.</div>
+        </div>
+
+        <div class="bulk-banner">
+          <strong>Bulk & Party Orders</strong>
+          <div>We accept bulk and party orders for events, offices and functions. Leave details below and we'll call with a custom quote and availability.</div>
+        </div>
+
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/mldyndwb" method="POST">
+          <div class="row">
+            <div class="field">
+              <input name="name" id="name" required placeholder=" " />
+              <label for="name">Your full name</label>
+            </div>
+            <div class="field">
+              <input name="phone" id="phone" required placeholder=" " />
+              <label for="phone">Phone number</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <textarea name="message" id="message" placeholder=" "></textarea>
+            <label for="message">Message</label>
+          </div>
+
+          <input type="hidden" name="_subject" value="New contact from website">
+          <button class="btn-send" type="submit">Send Message</button>
+          <div class="form-note">We will reply by WhatsApp or call. No online ordering — only contact.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- RIGHT FLOATING CTA -->
+  <div class="right-floating" aria-hidden="false">
+    <a class="float-wa" href="https://wa.me/919327975644?text=Hello%20Umiya" target="_blank" title="WhatsApp">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+    <a class="float-call" href="tel:+919327975644" title="Call">
+      <i class="fas fa-phone"></i> Call
+    </a>
+  </div>
+
+  <!-- FOOTER (replace if you already have footer) -->
+  <footer class="umiya-footer">
+    <div class="container footer-inner">
+      <div class="f-col f-left">
+        <div class="logo-row">
+          <img src="images/image.png" alt="logo" class="f-logo">
+          <div>
+            <div class="footer-brand-name">Umiya Fast-Food & Bhajipav</div>
+            <div class="brand-sub">Fresh • Tasty • Garam</div>
+          </div>
+        </div>
+        <p class="about">Hot bhaji-pav and tasty fast-food. For bulk & party orders: message with quantity & date — we'll call back with a custom quote.</p>
+        <div class="footer-cta-row">
+          <a class="btn-footer-wa" href="https://wa.me/919327975644?text=Hi%20Umiya" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a class="btn-footer-call" href="tel:+919327975644"><i class="fas fa-phone"></i> Call</a>
+        </div>
+      </div>
+
+      <div class="f-col f-mid">
+        <h4 class="f-title">Contact & Location</h4>
+        <ul class="contact-list">
+          <li><i class="fas fa-map-marker-alt"></i> Tintoda Cross Road, Shertha-Kalol Road, Gandhinagar</li>
+          <li><i class="fas fa-phone"></i> <a href="tel:+919327975644" class="linkify">+91 93279 75644</a></li>
+          <li><i class="fas fa-envelope"></i> <a href="mailto:pnisarg1807@gmail.com" class="linkify">pnisarg1807@gmail.com</a></li>
+          <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919327975644" target="_blank" class="linkify">WhatsApp: +91 93279 75644</a></li>
+        </ul>
+        <a class="maps-link" href="https://g.page/r/CVReUQwiol7NEBE/review" target="_blank"><i class="fas fa-map"></i> Open in Google Maps</a>
+      </div>
+
+      <div class="f-col f-right">
+        <h4 class="f-title">More</h4>
+        <ul class="quick-links">
+          <li><a href="#menu" class="nav-link">Menu</a></li>
+          <li><a href="#contact" class="nav-link">Quick Message</a></li>
+          <li><a href="#contact" class="nav-link">Bulk Orders</a></li>
+        </ul>
+        <div class="hours">
+          <strong>Hours</strong>
+          <div>9:00 AM — 10:30 PM</div>
+        </div>
+        <div class="social-row">
+          <a href="#" aria-label="facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="google"><i class="fab fa-google"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container bottom-inner">
+        <div class="copy"> <span id="year-footer"></span> Umiya Fast-Food. All rights reserved.</div>
+        <div class="policies">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById && (document.getElementById('year-footer').textContent = new Date().getFullYear());</script>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://YOURUSERNAME.github.io/umiya-fastfood/sitemap.xml

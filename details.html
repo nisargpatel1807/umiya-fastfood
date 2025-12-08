@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Item details - Umiya Fast-Food</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero container">
+    <div class="brand">
+      <img src="images/image.png" alt="Umiya logo" class="brand-logo">
+      <div>
+        <div class="brand-title">Umiya Fast-Food & Bhajipav</div>
+        <div class="brand-sub">Fresh • Tasty • Garam</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="details-hero" style="margin-top:18px;">
+      <a id="backBtn" class="back-btn" href="index.html"><i class="fas fa-arrow-left"></i> Back to menu</a>
+    </div>
+
+    <div id="detailsWrap" class="details-wrap">
+      <!-- details populated by JS -->
+      <div class="details-card" id="detailsCard" aria-live="polite">
+        <img id="detailImg" src="images/image.png" alt="image">
+        <div class="details-body">
+          <h2 id="detailName">Item name</h2>
+          <div class="desc" id="detailDesc">Description</div>
+          <div class="price" id="detailPrice">₹0</div>
+
+          <div class="ingredients">
+            <h4 style="color:#fff;margin-top:12px">Ingredients</h4>
+            <ul id="detailIngredients" class="ingredients-list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="padding:30px 0;text-align:center;color:#aaa">Umiya Fast-Food</footer>
+
+  <script>
+    // details logic (simple, reads id)
+    (async function(){
+      function qs(name){const u=new URL(location.href);return u.searchParams.get(name)}
+      const id = qs('id') || '1';
+      // fetch menu.json with error fallback
+      async function getData(){
+        try{
+          const r = await fetch('menu.json');
+          if(!r.ok) throw new Error('fetch_failed');
+          return await r.json();
+        }catch(e){
+          // fallback demo
+          return [
+            {"id":"1","name":"Special Bhajipav","desc":"Hot mixed vegetable bhaji served with soft pav.","price":60,"ingredients":["Potato","Peas","Spices","Onion"],"img":"images/bhajipav.jpg"},
+            {"id":"2","name":"Vada Pav","desc":"Crispy potato fritter inside pav.","price":30,"ingredients":["Potato","Chillies","Batter"],"img":"images/vadapav.jpg"}
+          ];
+        }
+      }
+      const data = await getData();
+      const item = data.find(it=>String(it.id)===String(id)) || data[0];
+      document.getElementById('detailImg').src = item.img || 'images/image.png';
+      document.getElementById('detailName').textContent = item.name;
+      document.getElementById('detailDesc').textContent = item.desc;
+      document.getElementById('detailPrice').textContent = '₹' + item.price;
+      const ing = document.getElementById('detailIngredients');
+      ing.innerHTML = '';
+      (item.ingredients||[]).forEach(x=>{
+        const li = document.createElement('li'); li.textContent = x; ing.appendChild(li);
+      });
+      // set back button to go back preserving scroll
+      document.getElementById('backBtn').addEventListener('click', function(e){
+        // allow normal navigation to index (keeps it simple)
+      });
+    })()
+  </script>
+</body>
+</html>

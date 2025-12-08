@@ -1,0 +1,748 @@
+[
+  {
+    "id": 1,
+    "name": "Oil Dabeli",
+    "price": 20,
+    "category": "Dabeli",
+    "image": "images/oil_dabeli.png",
+    "desc": "Classic oil toasted dabeli with rich masala.",
+    "ingredients": [
+      "Boiled potato mixture",
+      "Dabeli masala",
+      "Red garlic chutney",
+      "Tamarind–dates sweet chutney",
+      "Finely chopped onion",
+      "Fresh coriander",
+      "Roasted peanuts",
+      "Pomegranate seeds",
+      "Farsan/Sev",
+      "Oil-toasted pav",
+      "Salt",
+      "Red chilli powder",
+      "Cumin powder"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Butter Dabeli",
+    "price": 25,
+    "category": "Dabeli",
+    "image": "images/butter_dabeli.jpeg",
+    "desc": "Butter toasted, extra soft and flavorful.",
+    "ingredients": [
+      "Boiled potato mixture",
+      "Dabeli masala",
+      "Red garlic chutney",
+      "Sweet tamarind chutney",
+      "Chopped onion",
+      "Fresh coriander",
+      "Butter",
+      "Roasted peanuts",
+      "Pomegranate",
+      "Sev/Farsan",
+      "Soft pav",
+      "Salt and spices"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Cheese Dabeli",
+    "price": 35,
+    "category": "Dabeli",
+    "image": "images/cheese_dabeli.jpeg",
+    "desc": "Creamy cheese-loaded dabeli.",
+    "ingredients": [
+      "Dabeli potato mixture",
+      "Red garlic chutney",
+      "Sweet chutney",
+      "Butter",
+      "Grated processed cheese",
+      "Onion",
+      "Coriander",
+      "Roasted peanuts",
+      "Sev",
+      "Pav"
+    ]
+  },
+
+  {
+    "id": 4,
+    "name": "Oil Vadapav",
+    "price": 25,
+    "category": "Vadapav",
+    "image": "images/vadapav.png",
+    "desc": "Classic Mumbai-style oil-roasted vadapav.",
+    "ingredients": [
+      "Potato vada with besan batter",
+      "Garlic dry chutney",
+      "Green chutney",
+      "Tamarind chutney",
+      "Oil",
+      "Soft pav",
+      "Salt",
+      "Turmeric",
+      "Coriander seeds",
+      "Mustard seeds",
+      "Cumin"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Butter Vadapav",
+    "price": 30,
+    "category": "Vadapav",
+    "image": "images/vadapav.png",
+    "desc": "Creamy buttery vadapav.",
+    "ingredients": [
+      "Potato vada",
+      "Besan batter",
+      "Butter",
+      "Dry garlic chutney",
+      "Green chutney",
+      "Tamarind sweet chutney",
+      "Pav",
+      "Salt & spices"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Cheese Vadapav",
+    "price": 40,
+    "category": "Vadapav",
+    "image": "images/cheese_vadapav_indian_style.jpeg",
+    "desc": "Cheese loaded vadapav.",
+    "ingredients": [
+      "Potato vada",
+      "Butter",
+      "Grated cheese",
+      "Red garlic chutney",
+      "Green chutney",
+      "Pav"
+    ]
+  },
+
+  {
+    "id": 7,
+    "name": "Oil Puff",
+    "price": 20,
+    "category": "Puff",
+    "image": "images/puff.png",
+    "desc": "Crispy oil-baked vegetable puff.",
+    "ingredients": [
+      "Maida pastry sheet",
+      "Oil",
+      "Potato filling",
+      "Green peas",
+      "Black pepper",
+      "Chilli flakes",
+      "Cumin",
+      "Pastry spices"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Butter Puff",
+    "price": 25,
+    "category": "Puff",
+    "image": "images/butter_puff_a_small_butter_on_the.jpeg",
+    "desc": "Rich buttery puff with veg filling.",
+    "ingredients": [
+      "Pastry sheet",
+      "Butter",
+      "Potato",
+      "Peas",
+      "Carrot",
+      "Paneer cubes (optional)",
+      "Mixed herbs",
+      "Pepper"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Cheese Puff",
+    "price": 35,
+    "category": "Puff",
+    "image": "images/puff.png",
+    "desc": "Cheese bursting veg puff.",
+    "ingredients": [
+      "Pastry sheet",
+      "Processed cheese",
+      "Potato filling",
+      "Peas",
+      "Black pepper",
+      "Oregano",
+      "Chilli flakes"
+    ]
+  },
+
+  {
+    "id": 10,
+    "name": "Oil Bhaji-Pav",
+    "price": 70,
+    "category": "Bhaji-Pav",
+    "image": "images/oil_bhajipav.png",
+    "desc": "Traditional oil-cooked pav bhaji.",
+    "ingredients": [
+      "Potato",
+      "Tomato",
+      "Green peas",
+      "Capsicum",
+      "Onion",
+      "Pav bhaji masala",
+      "Red chilli",
+      "Butter (optional)",
+      "Oil",
+      "Lemon",
+      "Coriander",
+      "Salt"
+    ]
+  },
+
+  {
+    "id": 11,
+    "name": "Jain Bhaji-Pav",
+    "price": 70,
+    "category": "Bhaji-Pav",
+    "image": "images/oil_bhajipav.png",
+    "desc": "No onion, no garlic — pure Jain bhaji.",
+    "ingredients": [
+      "Potato",
+      "Tomato",
+      "Peas",
+      "Capsicum",
+      "Jain pav bhaji masala",
+      "Oil",
+      "Salt",
+      "Red chilli powder",
+      "Fresh coriander",
+      "Lemon"
+    ]
+  },
+
+  {
+    "id": 12,
+    "name": "Butter Bhaji-Pav",
+    "price": 90,
+    "category": "Bhaji-Pav",
+    "image": "images/butter_bhajipav.png",
+    "desc": "Rich buttery pav bhaji.",
+    "ingredients": [
+      "Potato",
+      "Tomato",
+      "Onion",
+      "Peas",
+      "Capsicum",
+      "Butter",
+      "Oil",
+      "Pav bhaji masala",
+      "Kashmiri red chilli",
+      "Coriander",
+      "Lemon"
+    ]
+  },
+
+  {
+    "id": 13,
+    "name": "Cheese Bhaji-Pav",
+    "price": 100,
+    "category": "Bhaji-Pav",
+    "image": "images/oil_bhajipav.png",
+    "desc": "Cheesy pav bhaji.",
+    "ingredients": [
+      "Bhaji base (potato, tomatoes, peas)",
+      "Processed cheese",
+      "Butter",
+      "Capsicum",
+      "Chilli paste",
+      "Lemon",
+      "Coriander"
+    ]
+  },
+
+  {
+    "id": 14,
+    "name": "Butter Cheese Bhaji-Pav",
+    "price": 120,
+    "category": "Bhaji-Pav",
+    "image": "images/oil_bhajipav.png",
+    "desc": "Ultimate butter-cheese blast bhaji.",
+    "ingredients": [
+      "Bhaji mixture",
+      "Extra butter",
+      "Extra cheese",
+      "Capsicum",
+      "Red chilli paste",
+      "Coriander",
+      "Lemon"
+    ]
+  },
+
+  {
+    "id": 15,
+    "name": "Masala Pav",
+    "price": 80,
+    "category": "Bhaji-Pav",
+    "image": "images/oil_bhajipav.png",
+    "desc": "Street-style spicy masala pav.",
+    "ingredients": [
+      "Pav",
+      "Onion",
+      "Tomato",
+      "Capsicum",
+      "Butter",
+      "Pav bhaji masala",
+      "Chilli powder",
+      "Coriander",
+      "Lemon juice"
+    ]
+  },
+
+  {
+    "id": 16,
+    "name": "Extra Pav",
+    "price": 10,
+    "category": "Bhaji-Pav",
+    "image": "images/pav.jpeg",
+    "desc": "Soft extra pav.",
+    "ingredients": [
+      "Fresh pav"
+    ]
+  },
+
+  {
+    "id": 17,
+    "name": "Manchurian Dry (Half)",
+    "price": 70,
+    "category": "Chinese",
+    "image": "images/manchuriyan_dry.png",
+    "desc": "Crispy dry manchurian.",
+    "ingredients": [
+      "Cabbage",
+      "Carrot",
+      "Beans",
+      "Corn flour",
+      "Maida",
+      "Black pepper",
+      "Soy sauce",
+      "Red chilli sauce",
+      "Ginger-garlic paste",
+      "Spring onion"
+    ]
+  },
+
+  {
+    "id": 18,
+    "name": "Manchurian Dry (Full)",
+    "price": 100,
+    "category": "Chinese",
+    "image": "images/manchuriyan_dry.png",
+    "desc": "Full plate manchurian dry.",
+    "ingredients": [
+      "Mixed vegetables",
+      "Corn flour slurry",
+      "Soy sauce",
+      "Chilli sauce",
+      "Pepper",
+      "Oil",
+      "Spring onion"
+    ]
+  },
+
+  {
+    "id": 19,
+    "name": "Manchurian Gravy",
+    "price": 100,
+    "category": "Chinese",
+    "image": "images/manchurian_greavy.png",
+    "desc": "Spicy tangy gravy.",
+    "ingredients": [
+      "Veg manchurian balls",
+      "Soy sauce",
+      "Schezwan sauce",
+      "Tomato ketchup",
+      "Corn flour gravy",
+      "Black pepper",
+      "Spring onion"
+    ]
+  },
+
+  {
+    "id": 20,
+    "name": "Manchurian Noodles",
+    "price": 100,
+    "category": "Chinese",
+    "image": "images/manchurian_noodles.png",
+    "desc": "Noodles tossed in manchurian sauce.",
+    "ingredients": [
+      "Noodles",
+      "Cabbage",
+      "Carrot",
+      "Capsicum",
+      "Spring onion",
+      "Soy sauce",
+      "Schezwan sauce",
+      "Chilli sauce",
+      "Oil",
+      "Black pepper"
+    ]
+  },
+
+  {
+    "id": 21,
+    "name": "Hakka Noodles",
+    "price": 100,
+    "category": "Chinese",
+    "image": "images/noodles.png",
+    "desc": "Perfect Indo-Chinese hakka noodles.",
+    "ingredients": [
+      "Hakka noodles",
+      "Garlic",
+      "Spring onion",
+      "Capsicum",
+      "Carrot",
+      "Soy sauce",
+      "Vinegar",
+      "Pepper",
+      "Oil"
+    ]
+  },
+
+  {
+    "id": 22,
+    "name": "Manchurian Rice",
+    "price": 100,
+    "category": "Rice",
+    "image": "images/Veg-Manchurian-Rice.png",
+    "desc": "Flavourful manchurian rice.",
+    "ingredients": [
+      "Boiled rice",
+      "Manchurian gravy",
+      "Spring onion",
+      "Soy sauce",
+      "Chilli sauce",
+      "Oil",
+      "Pepper"
+    ]
+  },
+
+  {
+    "id": 23,
+    "name": "Fried Rice",
+    "price": 100,
+    "category": "Rice",
+    "image": "images/fried_rice.png",
+    "desc": "Classic fried rice.",
+    "ingredients": [
+      "Rice",
+      "Cabbage",
+      "Carrot",
+      "Beans",
+      "Soy sauce",
+      "Vinegar",
+      "Spring onion",
+      "Pepper",
+      "Oil"
+    ]
+  },
+
+  {
+    "id": 24,
+    "name": "Schezwan Rice",
+    "price": 100,
+    "category": "Rice",
+    "image": "images/fried_rice.png",
+    "desc": "Spicy schezwan-style fried rice.",
+    "ingredients": [
+      "Rice",
+      "Schezwan sauce",
+      "Veg mix",
+      "Spring onion",
+      "Soy sauce",
+      "Red chilli paste"
+    ]
+  },
+
+  {
+    "id": 25,
+    "name": "Oil Pulao (Half)",
+    "price": 70,
+    "category": "Rice",
+    "image": "images/pulao.png",
+    "desc": "Aromatic veg oil pulao.",
+    "ingredients": [
+      "Rice",
+      "Carrot",
+      "Peas",
+      "Beans",
+      "Cumin",
+      "Bay leaf",
+      "Cloves",
+      "Oil",
+      "Salt"
+    ]
+  },
+
+  {
+    "id": 26,
+    "name": "Oil Pulao (Full)",
+    "price": 100,
+    "category": "Rice",
+    "image": "images/pulao.png",
+    "desc": "Full veg oil pulao.",
+    "ingredients": [
+      "Basmati rice",
+      "Carrot",
+      "Peas",
+      "Beans",
+      "Cumin seeds",
+      "Oil",
+      "Garam masala"
+    ]
+  },
+
+  {
+    "id": 27,
+    "name": "Butter Pulao (Half)",
+    "price": 90,
+    "category": "Rice",
+    "image": "images/pulao.png",
+    "desc": "Half portion butter pulao.",
+    "ingredients": [
+      "Rice",
+      "Butter",
+      "Whole spices",
+      "Mixed vegetables",
+      "Salt"
+    ]
+  },
+
+  {
+    "id": 28,
+    "name": "Butter Pulao (Full)",
+    "price": 120,
+    "category": "Rice",
+    "image": "images/pulao.png",
+    "desc": "Full butter-loaded pulao.",
+    "ingredients": [
+      "Basmati rice",
+      "Butter",
+      "Vegetables",
+      "Garam masala",
+      "Cumin",
+      "Salt"
+    ]
+  },
+
+  {
+    "id": 29,
+    "name": "Cheese Pulao (Full)",
+    "price": 130,
+    "category": "Rice",
+    "image": "images/pulao.png",
+    "desc": "Cheesy creamy pulao.",
+    "ingredients": [
+      "Rice",
+      "Grated cheese",
+      "Butter",
+      "Vegetables",
+      "Black pepper",
+      "Salt",
+      "Mixed herbs"
+    ]
+  },
+
+  {
+    "id": 30,
+    "name": "Aloo-Mutter Sandwich",
+    "price": 30,
+    "category": "Sandwich",
+    "image": "images/aloo_mutter.png",
+    "desc": "Classic aloo mutter sandwich.",
+    "ingredients": [
+      "Bread",
+      "Boiled potato",
+      "Green peas",
+      "Chaat masala",
+      "Green chutney",
+      "Butter"
+    ]
+  },
+
+  {
+    "id": 31,
+    "name": "Vegetable Sandwich",
+    "price": 30,
+    "category": "Sandwich",
+    "image": "images/vagi.png",
+    "desc": "Fresh cold veg sandwich.",
+    "ingredients": [
+      "Bread",
+      "Tomato",
+      "Cucumber",
+      "Onion",
+      "Butter",
+      "Chutney",
+      "Salt & pepper"
+    ]
+  },
+
+  {
+    "id": 32,
+    "name": "Cheese Sandwich",
+    "price": 45,
+    "category": "Sandwich",
+    "image": "images/cheese.png",
+    "desc": "Cheese layered sandwich.",
+    "ingredients": [
+      "Bread",
+      "Grated cheese",
+      "Butter",
+      "Green chutney"
+    ]
+  },
+
+  {
+    "id": 33,
+    "name": "Aloo-Mutter Cheese Sandwich",
+    "price": 65,
+    "category": "Sandwich",
+    "image": "images/aloo_cheese.png",
+    "desc": "Cheesy aloo-mutter sandwich.",
+    "ingredients": [
+      "Potato",
+      "Peas",
+      "Cheese",
+      "Bread",
+      "Chutney",
+      "Butter"
+    ]
+  },
+
+  {
+    "id": 34,
+    "name": "Vegetable Cheese Sandwich",
+    "price": 65,
+    "category": "Sandwich",
+    "image": "images/vagi_grill.png",
+    "desc": "Veg + cheese combo sandwich.",
+    "ingredients": [
+      "Cucumber",
+      "Tomato",
+      "Cheese",
+      "Bread",
+      "Butter",
+      "Chutney"
+    ]
+  },
+
+  {
+    "id": 35,
+    "name": "Aloo-Mutter Grill Sandwich",
+    "price": 50,
+    "category": "Sandwich",
+    "image": "images/aloo_mutter_grill.png",
+    "desc": "Grilled aloo-mutter sandwich.",
+    "ingredients": [
+      "Potato",
+      "Peas",
+      "Chutney",
+      "Bread",
+      "Butter",
+      "Chaat masala"
+    ]
+  },
+
+  {
+    "id": 36,
+    "name": "Vegetable Grill Sandwich",
+    "price": 50,
+    "category": "Sandwich",
+    "image": "images/vagi_grill.png",
+    "desc": "Fresh veg grilled sandwich.",
+    "ingredients": [
+      "Bread",
+      "Onion",
+      "Capsicum",
+      "Tomato",
+      "Butter",
+      "Chutney"
+    ]
+  },
+
+  {
+    "id": 37,
+    "name": "Cheese Grill Sandwich",
+    "price": 70,
+    "category": "Sandwich",
+    "image": "images/cheese_grill.png",
+    "desc": "Cheese overloaded grilled sandwich.",
+    "ingredients": [
+      "Bread",
+      "Cheese",
+      "Butter",
+      "Chutney"
+    ]
+  },
+
+  {
+    "id": 38,
+    "name": "Aloo-Mutter Cheese Grill",
+    "price": 80,
+    "category": "Sandwich",
+    "image": "images/aloo_cheese.png",
+    "desc": "Grilled aloo-peas cheese sandwich.",
+    "ingredients": [
+      "Potato",
+      "Peas",
+      "Cheese",
+      "Chutney",
+      "Bread",
+      "Butter"
+    ]
+  },
+
+  {
+    "id": 39,
+    "name": "Vegetable Cheese Grill Sandwich",
+    "price": 80,
+    "category": "Sandwich",
+    "image": "images/vagi_grill.png",
+    "desc": "Veg + cheese grilled sandwich.",
+    "ingredients": [
+      "Vegetables",
+      "Cheese",
+      "Bread",
+      "Butter",
+      "Chutney"
+    ]
+  },
+
+  {
+    "id": 40,
+    "name": "Butter Swiss (Sing-Sav)",
+    "price": 15,
+    "category": "Others",
+    "image": "images/butter_swiss.jpg",
+    "desc": "Soft butter swiss.",
+    "ingredients": [
+      "Bread",
+      "Butter",
+      "Sugar"
+    ]
+  },
+
+  {
+    "id": 41,
+    "name": "Butter Jam (Sing-Sav)",
+    "price": 20,
+    "category": "Others",
+    "image": "images/butter_jam.jpg",
+    "desc": "Butter and jam sandwich.",
+    "ingredients": [
+      "Bread",
+      "Butter",
+      "Mixed fruit jam"
+    ]
+  }
+
+]
