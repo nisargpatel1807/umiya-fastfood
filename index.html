@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Open Graph / Twitter / SEO meta (kept from your file) -->
+    <!-- Open Graph / Twitter etc (kept) -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Umiya Fast-Food & Bhajipav</title>
 
-    <!-- OG -->
+    <!-- SEO & OG -->
+    <meta name="description" content="Umiya Fast-Food & Bhajipav — Best Bhaji-Pav, Vadapav, Sandwich & Chinese" />
     <meta property="og:title" content="Umiya Fast-Food & Bhajipav" />
-    <meta property="og:description" content="Best Bhaji-Pav, Vadapav, Sandwich & Chinese | Taste the real street food!" />
-    <meta property="og:image" content="https://nisargpatel1807.github.io/umiya-fastfood/images/og-banner.png" />
+    <meta property="og:description" content="Best Bhaji-Pav, Vadapav, Sandwich & Chinese" />
+    <meta property="og:image" content="https://nisargpatel1807.github.io/umiya-fastfood/images/og-banner.jpg" />
     <meta property="og:url" content="https://nisargpatel1807.github.io/umiya-fastfood/" />
-    <meta property="og:type" content="website" />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Umiya Fast-Food & Bhajipav" />
-    <meta name="twitter:description" content="Best Bhaji-Pav, Vadapav, Sandwich & Chinese" />
-    <meta name="twitter:image" content="https://nisargpatel1807.github.io/umiya-fastfood/images/og-banner.png" />
+    <link rel="icon" type="image/png" href="images/logo.png" />
 
-    <link rel="icon" href="images/logo.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <!-- Fonts + icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- styles -->
     <link rel="stylesheet" href="styles.css" />
   </head>
-
   <body>
-    <!-- HEADER -->
+    <!-- header -->
     <header class="hero">
       <div class="brand">
         <img src="images/image.png" class="brand-logo" alt="logo" />
@@ -37,50 +34,33 @@
       </div>
     </header>
 
-    <!-- MAIN -->
     <main class="container">
-      <!-- Search -->
-      <div class="search-row" style="margin-top: 22px">
+      <!-- search -->
+      <div class="search-row" style="margin-top:18px;">
         <input id="searchInput" placeholder="Search items (eg. bhajipav, manchurian, noodles)" />
         <button id="searchBtn">Search</button>
       </div>
 
-      <!-- MENU SECTION -->
       <section class="menu-section" id="menu">
-        <!-- LEFT: categories -->
+        <!-- categories -->
         <aside class="side-cats">
           <h3>Menu Categories</h3>
           <ul id="categories" class="cat-list"></ul>
         </aside>
 
-        <!-- RIGHT: menu -->
+        <!-- menu right -->
         <section class="menu-right">
           <h2 class="page-title">🍔 Our Menu</h2>
 
-          <!-- wrapper (JS uses this wrapper for fade + collapse) -->
+          <!-- wrapper used to create a fade + fixed-height on mobile -->
           <div class="menu-grid-wrapper">
-            <div id="menuGrid" class="menu-grid" aria-live="polite"></div>
+            <div class="menu-grid" id="menuGrid" aria-live="polite"></div>
             <div class="menu-fade" aria-hidden="true"></div>
-          </div>
-
-          <!-- controls -->
-          <div class="menu-controls">
-            <span id="showingCounter" style="display:block;margin-bottom:8px;color:var(--muted);font-weight:600"></span>
-            <button id="loadMoreBtn" class="btn-load-more" aria-expanded="false">Load more items</button>
           </div>
         </section>
       </section>
 
-      <!-- STICKY CONTACT (mobile) -->
-      <div class="contact-sticky" role="region" aria-label="Quick contact bar">
-        <div style="display:flex;gap:12px;align-items:center;justify-content:space-between">
-          <a href="https://wa.me/919327975644?text=Hello%20Umiya" class="btn-load-more" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-          <a href="tel:+919327975644" class="btn-load-more" style="background:#222;color:#fff"><i class="fas fa-phone"></i> Call</a>
-          <button id="jumpContact" class="btn-load-more" style="background:#fff;color:#111">Quick Message</button>
-        </div>
-      </div>
-
-      <!-- CONTACT FORM -->
+      <!-- contact quick message -->
       <section id="contact" class="contact-section">
         <div class="contact-card">
           <div class="contact-head">
@@ -118,9 +98,9 @@
       </section>
     </main>
 
-    <!-- RIGHT FLOATING CTA -->
+    <!-- right floating (desktop only) -->
     <div class="right-floating" aria-hidden="false">
-      <a class="float-wa" href="https://wa.me/919327975644?text=Hello%20Umiya" target="_blank" title="WhatsApp" rel="noopener noreferrer">
+      <a class="float-wa" href="https://wa.me/919327975644?text=Hello%20Umiya" target="_blank" title="WhatsApp">
         <i class="fab fa-whatsapp"></i> WhatsApp
       </a>
       <a class="float-call" href="tel:+919327975644" title="Call">
@@ -128,7 +108,7 @@
       </a>
     </div>
 
-    <!-- FOOTER -->
+    <!-- footer -->
     <footer class="umiya-footer">
       <div class="container footer-inner">
         <div class="f-col f-left">
@@ -141,7 +121,7 @@
           </div>
           <p class="about">Hot bhaji-pav and tasty fast-food. For bulk & party orders: message with quantity & date — we'll call back with a custom quote.</p>
           <div class="footer-cta-row">
-            <a class="btn-footer-wa" href="https://wa.me/919327975644?text=Hi%20Umiya" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a class="btn-footer-wa" href="https://wa.me/919327975644?text=Hi%20Umiya" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             <a class="btn-footer-call" href="tel:+919327975644"><i class="fas fa-phone"></i> Call</a>
           </div>
         </div>
@@ -149,12 +129,12 @@
         <div class="f-col f-mid">
           <h4 class="f-title">Contact & Location</h4>
           <ul class="contact-list">
-            <li><i class="fas fa-map-marker-alt"></i> <a href="https://g.page/r/CVReUQwiol7NEBE/review" target="_blank" rel="noopener noreferrer" class="linkify">Tintoda Cross Road, Shertha-Kalol Road, Gandhinagar</a></li>
+            <li><i class="fas fa-map-marker-alt"></i> <a href="https://g.page/r/CVReUQwiol7NEBE/review" target="_blank" class="linkify">Tintoda Cross Road, Shertha-Kalol Road, Gandhinagar</a></li>
             <li><i class="fas fa-phone"></i> <a href="tel:+919327975644" class="linkify">+91 93279 75644</a></li>
             <li><i class="fas fa-envelope"></i> <a href="mailto:pnisarg1807@gmail.com" class="linkify">pnisarg1807@gmail.com</a></li>
-            <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919327975644" target="_blank" rel="noopener noreferrer" class="linkify">WhatsApp: +91 93279 75644</a></li>
+            <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919327975644" class="linkify" target="_blank">WhatsApp: +91 93279 75644</a></li>
           </ul>
-          <a class="maps-link" href="https://g.page/r/CVReUQwiol7NEBE/review" target="_blank" rel="noopener noreferrer"><i class="fas fa-map"></i> Open in Google Maps</a>
+          <a class="maps-link" href="https://g.page/r/CVReUQwiol7NEBE/review" target="_blank"><i class="fas fa-map"></i> Open in Google Maps</a>
         </div>
 
         <div class="f-col f-right">
@@ -164,10 +144,7 @@
             <li><a href="#contact" class="nav-link">Quick Message</a></li>
             <li><a href="#contact" class="nav-link">Bulk Orders</a></li>
           </ul>
-          <div class="hours">
-            <strong>Hours</strong>
-            <div>9:00 AM — 10:30 PM</div>
-          </div>
+          <div class="hours"><strong>Hours</strong><div>9:00 AM — 10:30 PM</div></div>
           <div class="social-row">
             <a href="#" aria-label="facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
@@ -184,28 +161,9 @@
       </div>
     </footer>
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Restaurant",
-        "name": "Umiya Fast-Food & Bhajipav",
-        "image": "https://nisargpatel1807.github.io/umiya-fastfood/images/logo.png",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Tintoda Cross Road, Shertha-Kalol Road",
-          "addressLocality": "Gandhinagar",
-          "addressRegion": "Gujarat",
-          "postalCode": "382421",
-          "addressCountry": "IN"
-        },
-        "servesCuisine": ["Fast Food","Chinese","Indian","Snacks"],
-        "url": "https://nisargpatel1807.github.io/umiya-fastfood/",
-        "telephone": "+919327975644",
-        "priceRange": "₹"
-      }
+    <script>
+      document.getElementById && (document.getElementById("year-footer").textContent = new Date().getFullYear());
     </script>
-
-    <script>document.getElementById && (document.getElementById("year-footer").textContent = new Date().getFullYear());</script>
 
     <script src="script.js"></script>
   </body>
