@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://YOURUSERNAME.github.io/umiya-fastfood/sitemap.xml
+Sitemap: https://nisargpatel1807.github.io/umiya-fastfood/sitemap.xml
