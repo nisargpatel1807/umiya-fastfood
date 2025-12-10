@@ -1,126 +1,169 @@
-/* script.js - final ready-to-paste version for your HTML */
+/* CLEAN & FINAL SCRIPT — only one loadMenu(), works with your menu.json format */
 
-/* CONFIG */
-const INIT_SHOW_MOBILE = 4; // mobile shows first 4 items (change to 6 if you prefer)
-
-/* state */
 let menuData = [];
 let filtered = [];
-let currentMenuItems = [];
 
-/* helper */
+/* Escape HTML helper */
 function escapeHtml(text){
-  return String(text || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  return String(text || '').replace(/[&<>"']/g, m => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[m]));
 }
+
+/* Show error inside menu grid */
 function showMenuError(message){
   const grid = document.getElementById('menuGrid');
-  if(grid) grid.innerHTML = `<div style="padding:14px;border-radius:10px;background:rgba(255,255,255,0.02);color:var(--muted);text-align:center">${escapeHtml(message)}</div>`;
-}
-
-/* MENU LOADER */
-async function loadMenu(){
-  try{
-    const res = await fetch('menu.json', {cache: "no-store"});
-    if(!res.ok) throw new Error('Failed fetch');
-    const data = await res.json();
-    if(!Array.isArray(data)) throw new Error('Invalid JSON');
-    menuData = data.map((it,idx) => ({
-      id: it.id ?? (idx+1),
-      name: it.name ?? '',
-      desc: it.desc ?? it.description ?? '',
-      price: it.price ?? 0,
-      category: it.category ?? 'Others',
-      image: it.image ?? it.img ?? 'images/placeholder.png',
-      ingredients: it.ingredients ?? it.ing ?? []
-    }));
-    filtered = menuData.slice();
-    buildCategories();
-    renderMenu(filtered);
-    animateMenuIn();
-  }catch(err){
-    console.error('LOAD ERROR:', err);
-    showMenuError('Failed to load menu.json — run site with Live Server.');
-    buildCategories();
+  if(grid){
+    grid.innerHTML = `
+      <div style="
+        padding:14px;
+        border-radius:10px;
+        background:rgba(255,255,255,0.05);
+        color:var(--muted);
+        text-align:center;">
+        ${escapeHtml(message)}
+      </div>`;
   }
 }
 
-/* CATEGORIES */
+/* MAIN MENU LOADER */
+async function loadMenu(){
+  try{
+    const res = await fetch('menu.json', {cache:"no-store"});
+    if(!res.ok) throw new Error("File not found");
+
+    const data = await res.json();
+
+    // expecting array
+    if(!Array.isArray(data)) throw new Error("JSON format invalid");
+
+    menuData = data.map((it, idx) => ({
+      id: it.id ?? (idx+1),
+      name: it.name ?? "",
+      desc: it.desc ?? "",
+      price: it.price ?? 0,
+      category: it.category ?? "Others",
+      image: it.image ?? "images/placeholder.png",
+      ingredients: it.ingredients ?? []
+    }));
+
+    filtered = menuData.slice();
+
+    buildCategories();
+    renderMenu(filtered);
+    animateMenuIn();
+
+  }catch(err){
+    console.error("LOAD ERROR:", err);
+    showMenuError("Failed to load menu.json — run site with Live Server.");
+    buildCategories([]);
+  }
+}
+
+/* BUILD CATEGORY TABS */
 function buildCategories(){
   const ul = document.getElementById('categories');
   if(!ul) return;
-  const set = new Set((menuData||[]).map(i=>i.category||'Others'));
-  const cats = ['All', ...Array.from(set)];
-  ul.innerHTML = '';
-  cats.forEach((c, i) => {
-    const li = document.createElement('li');
+
+  const catSet = new Set(menuData.map(i => i.category || "Others"));
+  const catList = ["All", ...catSet];
+
+  ul.innerHTML = "";
+
+  catList.forEach((c, index)=>{
+    const li = document.createElement("li");
+    li.setAttribute("role","tab");
     li.textContent = c;
-    if(i===0) li.classList.add('active');
+    if(index === 0) li.classList.add("active");
+
     li.onclick = () => {
-      document.querySelectorAll('#categories li').forEach(x=>x.classList.remove('active'));
-      li.classList.add('active');
-      filtered = (c === 'All') ? menuData.slice() : menuData.filter(it => it.category === c);
+      document.querySelectorAll("#categories li").forEach(x=>x.classList.remove("active"));
+      li.classList.add("active");
+
+      filtered = (c === "All") ? menuData : menuData.filter(i => i.category === c);
       renderMenu(filtered);
       animateMenuIn();
-      // scroll to menu area (slightly below header)
-      const top = document.querySelector('.menu-section')?.offsetTop || 0;
-      window.scrollTo({ top: Math.max(top - 70, 0), behavior: 'smooth' });
+
+      // center the clicked chip in the horizontal list for better mobile UX
+      try{
+        li.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+      }catch(e){}
     };
+
     ul.appendChild(li);
   });
 }
 
-/* RENDER MENU */
-function renderMenu(items){
-  currentMenuItems = items || [];
-  const grid = document.getElementById('menuGrid');
+/* RENDER MENU CARDS */
+function renderMenu(list){
+  const grid = document.getElementById("menuGrid");
   if(!grid) return;
-  grid.innerHTML = '';
-  if(!items || items.length === 0){
-    showMenuError('No items found.');
+
+  grid.innerHTML = "";
+
+  if(list.length === 0){
+    showMenuError("No items found.");
     return;
   }
-  items.forEach((it, idx) => {
-    const card = document.createElement('div');
-    card.className = 'menu-card';
-    card.dataset.index = idx;
+
+  list.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "menu-card";
+
     card.innerHTML = `
-      <a href="details.html?id=${encodeURIComponent(it.id)}" class="card-link" style="text-decoration:none;color:inherit;display:block;height:100%">
-        <div class="img-wrap"><img loading="lazy" src="${escapeHtml(it.image)}" alt="${escapeHtml(it.name)}"></div>
+      <a href="details.html?id=${encodeURIComponent(item.id)}" class="card-link">
+        <div class="img-wrap"><img src="${item.image}" loading="lazy" alt="${escapeHtml(item.name)}"></div>
+
         <div class="menu-info">
-          <div class="menu-name">${escapeHtml(it.name)}</div>
-          <div class="menu-desc">${escapeHtml(it.desc)}</div>
+          <div class="menu-name">${escapeHtml(item.name)}</div>
+          <div class="menu-desc">${escapeHtml(item.desc)}</div>
+
           <div class="menu-bottom">
-            <div class="meta-row"><span class="meta-cat">${escapeHtml(it.category)}</span></div>
-            <div class="menu-price">₹${Number(it.price||0).toFixed(0)}</div>
+            <span class="meta-cat">${escapeHtml(item.category)}</span>
+            <span class="menu-price">₹${item.price}</span>
           </div>
         </div>
       </a>
     `;
+
     grid.appendChild(card);
   });
 
-  // apply mobile limit display
-  applyMobileLimit();
-
-  // init tilt if available
-  try{ if(window.VanillaTilt) VanillaTilt.init(document.querySelectorAll('.menu-card'), {max:8, speed:350, glare:false}); }catch(e){}
-  animateMenuIn();
+  try{
+    if(window.VanillaTilt){
+      VanillaTilt.init(document.querySelectorAll(".menu-card"), {max:8, speed:350});
+    }
+  }catch(e){}
 }
 
-/* SEARCH SETUP */
+/* SEARCH */
 function setupSearch(){
-  const btn = document.getElementById('searchBtn');
-  const input = document.getElementById('searchInput');
+  const btn = document.getElementById("searchBtn");
+  const input = document.getElementById("searchInput");
+
   if(btn){
     btn.onclick = () => {
-      const q = (input?.value||'').trim().toLowerCase();
+      const q = input.value.trim().toLowerCase();
       if(!q){ renderMenu(menuData); return; }
-      const res = menuData.filter(i => (i.name + ' ' + i.desc + ' ' + i.category).toLowerCase().includes(q));
-      renderMenu(res);
+
+      const result = menuData.filter(i =>
+        (i.name+" "+i.desc+" "+i.category).toLowerCase().includes(q)
+      );
+      renderMenu(result);
     };
   }
+
   if(input){
-    input.addEventListener('keydown', (e) => { if(e.key === 'Enter'){ e.preventDefault(); btn?.click(); }});
+    input.onkeydown = (e)=>{
+      if(e.key === "Enter"){
+        e.preventDefault();
+        btn.click();
+      }
+    };
   }
 }
 
@@ -128,51 +171,16 @@ function setupSearch(){
 function animateMenuIn(){
   try{
     if(window.gsap){
-      gsap.killTweensOf('.menu-card');
-      gsap.fromTo('.menu-card', {y:18, opacity:0}, {y:0, opacity:1, stagger:0.06, duration:0.55, ease:'power3.out'});
+      gsap.fromTo(".menu-card",
+        {y:20, opacity:0},
+        {y:0, opacity:1, stagger:0.06, duration:0.6, ease:"power3.out"}
+      );
     }
-  }catch(e){}
+  }catch(err){}
 }
 
-/* MOBILE LIMIT (show only first N items on mobile) */
-function applyMobileLimit(){
-  const isMobile = window.matchMedia('(max-width:900px)').matches;
-  const grid = document.getElementById('menuGrid');
-  if(!grid) return;
-  const cards = Array.from(grid.querySelectorAll('.menu-card'));
-  if(isMobile){
-    cards.forEach((c, idx) => { c.style.display = (idx < INIT_SHOW_MOBILE) ? 'block' : 'none'; });
-    grid.parentElement?.classList?.add('menu-collapsed');
-    // show mobile fade (if present)
-    const fade = grid.parentElement.querySelector('.menu-fade');
-    if(fade) fade.style.display = 'block';
-    // hide load more controls (we removed)
-    const btn = document.getElementById('loadMoreBtn'); if(btn) btn.style.display = 'none';
-  } else {
-    cards.forEach(c => { c.style.display = 'block'; });
-    grid.parentElement?.classList?.remove('menu-collapsed');
-    const fade = grid.parentElement.querySelector('.menu-fade'); if(fade) fade.style.display = 'none';
-    const btn = document.getElementById('loadMoreBtn'); if(btn) btn.style.display = 'none';
-  }
-}
-
-/* JUMP TO CONTACT (button) */
-document.addEventListener('DOMContentLoaded', () => {
-  const jump = document.getElementById('jumpContact');
-  if(jump){
-    jump.addEventListener('click', () => {
-      const el = document.querySelector('#contact') || document.querySelector('.contact-section');
-      if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
-    });
-  }
-
-  // setup search + load menu
+/* INIT */
+document.addEventListener("DOMContentLoaded", ()=>{
   setupSearch();
   loadMenu();
-});
-
-/* responsive updates */
-window.addEventListener('resize', () => {
-  // re-apply mobile limit
-  applyMobileLimit();
 });
