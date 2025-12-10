@@ -1,30 +1,27 @@
-/* script.js - final ready-to-paste version for your HTML */
+/* script.js - final: load menu.json, render categories & grid, mobile limited viewport (no load more) */
 
-/* CONFIG */
-const INIT_SHOW_MOBILE = 4; // mobile shows first 4 items (change to 6 if you prefer)
-
-/* state */
 let menuData = [];
-let filtered = [];
-let currentMenuItems = [];
 
-/* helper */
+/* small helper */
 function escapeHtml(text){
   return String(text || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
+
+/* show error */
 function showMenuError(message){
   const grid = document.getElementById('menuGrid');
-  if(grid) grid.innerHTML = `<div style="padding:14px;border-radius:10px;background:rgba(255,255,255,0.02);color:var(--muted);text-align:center">${escapeHtml(message)}</div>`;
+  if(!grid) return;
+  grid.innerHTML = `<div style="padding:14px;border-radius:10px;background:rgba(255,255,255,0.03);color:var(--muted);text-align:center">${escapeHtml(message)}</div>`;
 }
 
-/* MENU LOADER */
+/* load menu.json */
 async function loadMenu(){
   try{
-    const res = await fetch('menu.json', {cache: "no-store"});
-    if(!res.ok) throw new Error('Failed fetch');
+    const res = await fetch('menu.json', {cache:"no-store"});
+    if(!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    if(!Array.isArray(data)) throw new Error('Invalid JSON');
-    menuData = data.map((it,idx) => ({
+    if(!Array.isArray(data)) throw new Error('menu.json must be an array');
+    menuData = data.map((it, idx) => ({
       id: it.id ?? (idx+1),
       name: it.name ?? '',
       desc: it.desc ?? it.description ?? '',
@@ -33,56 +30,53 @@ async function loadMenu(){
       image: it.image ?? it.img ?? 'images/placeholder.png',
       ingredients: it.ingredients ?? it.ing ?? []
     }));
-    filtered = menuData.slice();
     buildCategories();
-    renderMenu(filtered);
-    animateMenuIn();
+    renderMenu(menuData);
+    // small UX: if user is on mobile, show fade; otherwise hide
+    onResizeAdjust();
   }catch(err){
     console.error('LOAD ERROR:', err);
-    showMenuError('Failed to load menu.json — run site with Live Server.');
-    buildCategories();
+    showMenuError('Failed to load menu.json — run site with Live Server or check file path.');
+    buildCategories([]);
   }
 }
 
-/* CATEGORIES */
+/* build categories */
 function buildCategories(){
   const ul = document.getElementById('categories');
   if(!ul) return;
-  const set = new Set((menuData||[]).map(i=>i.category||'Others'));
+  const set = new Set(menuData.map(i => i.category || 'Others'));
   const cats = ['All', ...Array.from(set)];
   ul.innerHTML = '';
-  cats.forEach((c, i) => {
+  cats.forEach((c, idx) => {
     const li = document.createElement('li');
     li.textContent = c;
-    if(i===0) li.classList.add('active');
-    li.onclick = () => {
+    if(idx === 0) li.classList.add('active');
+    li.addEventListener('click', () => {
       document.querySelectorAll('#categories li').forEach(x=>x.classList.remove('active'));
       li.classList.add('active');
-      filtered = (c === 'All') ? menuData.slice() : menuData.filter(it => it.category === c);
-      renderMenu(filtered);
-      animateMenuIn();
-      // scroll to menu area (slightly below header)
-      const top = document.querySelector('.menu-section')?.offsetTop || 0;
-      window.scrollTo({ top: Math.max(top - 70, 0), behavior: 'smooth' });
-    };
+      const list = c === 'All' ? menuData : menuData.filter(i => i.category === c);
+      renderMenu(list);
+      // scroll to menu top (nice)
+      const menuTop = document.querySelector('.menu-section')?.offsetTop || 0;
+      window.scrollTo({ top: menuTop - 10, behavior: 'smooth' });
+    });
     ul.appendChild(li);
   });
 }
 
-/* RENDER MENU */
-function renderMenu(items){
-  currentMenuItems = items || [];
+/* render menu */
+function renderMenu(list){
   const grid = document.getElementById('menuGrid');
   if(!grid) return;
   grid.innerHTML = '';
-  if(!items || items.length === 0){
+  if(!list || list.length === 0){
     showMenuError('No items found.');
     return;
   }
-  items.forEach((it, idx) => {
+  list.forEach(it => {
     const card = document.createElement('div');
     card.className = 'menu-card';
-    card.dataset.index = idx;
     card.innerHTML = `
       <a href="details.html?id=${encodeURIComponent(it.id)}" class="card-link" style="text-decoration:none;color:inherit;display:block;height:100%">
         <div class="img-wrap"><img loading="lazy" src="${escapeHtml(it.image)}" alt="${escapeHtml(it.name)}"></div>
@@ -99,80 +93,89 @@ function renderMenu(items){
     grid.appendChild(card);
   });
 
-  // apply mobile limit display
-  applyMobileLimit();
-
-  // init tilt if available
+  // optional tilt (if library loaded)
   try{ if(window.VanillaTilt) VanillaTilt.init(document.querySelectorAll('.menu-card'), {max:8, speed:350, glare:false}); }catch(e){}
-  animateMenuIn();
-}
 
-/* SEARCH SETUP */
-function setupSearch(){
-  const btn = document.getElementById('searchBtn');
-  const input = document.getElementById('searchInput');
-  if(btn){
-    btn.onclick = () => {
-      const q = (input?.value||'').trim().toLowerCase();
-      if(!q){ renderMenu(menuData); return; }
-      const res = menuData.filter(i => (i.name + ' ' + i.desc + ' ' + i.category).toLowerCase().includes(q));
-      renderMenu(res);
-    };
-  }
-  if(input){
-    input.addEventListener('keydown', (e) => { if(e.key === 'Enter'){ e.preventDefault(); btn?.click(); }});
-  }
-}
-
-/* ANIMATION */
-function animateMenuIn(){
+  // animation if gsap loaded
   try{
     if(window.gsap){
-      gsap.killTweensOf('.menu-card');
-      gsap.fromTo('.menu-card', {y:18, opacity:0}, {y:0, opacity:1, stagger:0.06, duration:0.55, ease:'power3.out'});
+      gsap.fromTo('.menu-card', {y:18, opacity:0}, {y:0, opacity:1, stagger:0.06, duration:0.6, ease:'power3.out'});
     }
   }catch(e){}
 }
 
-/* MOBILE LIMIT (show only first N items on mobile) */
-function applyMobileLimit(){
-  const isMobile = window.matchMedia('(max-width:900px)').matches;
-  const grid = document.getElementById('menuGrid');
-  if(!grid) return;
-  const cards = Array.from(grid.querySelectorAll('.menu-card'));
-  if(isMobile){
-    cards.forEach((c, idx) => { c.style.display = (idx < INIT_SHOW_MOBILE) ? 'block' : 'none'; });
-    grid.parentElement?.classList?.add('menu-collapsed');
-    // show mobile fade (if present)
-    const fade = grid.parentElement.querySelector('.menu-fade');
-    if(fade) fade.style.display = 'block';
-    // hide load more controls (we removed)
-    const btn = document.getElementById('loadMoreBtn'); if(btn) btn.style.display = 'none';
-  } else {
-    cards.forEach(c => { c.style.display = 'block'; });
-    grid.parentElement?.classList?.remove('menu-collapsed');
-    const fade = grid.parentElement.querySelector('.menu-fade'); if(fade) fade.style.display = 'none';
-    const btn = document.getElementById('loadMoreBtn'); if(btn) btn.style.display = 'none';
+/* search */
+function setupSearch(){
+  const btn = document.getElementById('searchBtn');
+  const input = document.getElementById('searchInput');
+  if(btn){
+    btn.addEventListener('click', ()=>{
+      const q = (input.value || '').trim().toLowerCase();
+      if(!q) { renderMenu(menuData); return; }
+      const res = menuData.filter(i => (i.name + ' ' + (i.desc||'') + ' ' + (i.category||'')).toLowerCase().includes(q));
+      renderMenu(res);
+    });
+  }
+  if(input){
+    input.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){ e.preventDefault(); btn.click(); }
+    });
   }
 }
 
-/* JUMP TO CONTACT (button) */
-document.addEventListener('DOMContentLoaded', () => {
-  const jump = document.getElementById('jumpContact');
-  if(jump){
-    jump.addEventListener('click', () => {
-      const el = document.querySelector('#contact') || document.querySelector('.contact-section');
+/* smooth nav links */
+function setupNavLinks(){
+  document.querySelectorAll('.nav-link').forEach(a=>{
+    a.addEventListener('click', (ev)=>{
+      ev.preventDefault();
+      const sel = a.getAttribute('href');
+      const el = document.querySelector(sel);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+}
+
+/* contact form UX */
+function setupContactForm(){
+  const contactForm = document.getElementById('contactForm');
+  if(!contactForm) return;
+  contactForm.addEventListener('submit', function(ev){
+    const btn = contactForm.querySelector('.btn-send');
+    if(btn){ btn.disabled = true; btn.textContent = 'Sending...'; }
+    setTimeout(()=>{ if(btn){ btn.textContent = 'Message Sent'; btn.style.background = 'linear-gradient(90deg,#2ecc71,#27ae60)'; } }, 1500);
+  });
+}
+
+/* jump to contact */
+document.addEventListener('DOMContentLoaded', ()=>{
+  const jc = document.getElementById('jumpContact');
+  if(jc){
+    jc.addEventListener('click', ()=>{
+      const el = document.getElementById('contact');
       if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
     });
   }
-
-  // setup search + load menu
-  setupSearch();
-  loadMenu();
 });
 
-/* responsive updates */
-window.addEventListener('resize', () => {
-  // re-apply mobile limit
-  applyMobileLimit();
+/* show/hide elements on resize and adjust fade visibility */
+function onResizeAdjust(){
+  const fade = document.querySelector('.menu-fade');
+  const grid = document.getElementById('menuGrid');
+  if(!grid || !fade) return;
+  if(window.matchMedia('(max-width:900px)').matches){
+    // mobile: show fade
+    fade.style.display = 'block';
+  } else {
+    fade.style.display = 'none';
+  }
+}
+
+/* init */
+window.addEventListener('resize', onResizeAdjust);
+document.addEventListener('DOMContentLoaded', ()=>{
+  setupSearch();
+  setupNavLinks();
+  setupContactForm();
+  loadMenu();
+  onResizeAdjust();
 });
